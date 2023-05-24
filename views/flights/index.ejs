@@ -1,0 +1,11 @@
+<%- include('../partials/header') %>
+
+
+<h1> ALL FLIGHTS </h1>
+
+<% flights.forEach(function(f) { %>
+    <h3><%= f.airline %>| Flight Number: <%= f.flightNo %></h3>
+    <h4>Deaprts From: <%= f.airport %> At: <%= f.departs %></h4>
+<% }) %>
+
+<%- include('../partials/footer') %>
