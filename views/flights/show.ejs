@@ -1,0 +1,15 @@
+<%- include('../partials/header') %>
+
+
+<ul>
+    <li>Flight: <%= flight.airline %> | <%= flight.flightNo %></li>
+    <li>Departing: <%= flight.airport %></li>
+    <li>For: <%= flight.destination %></li>
+    <li>At: <%= flight.departTime %></li>
+</ul>
+
+<a href="/flights/edit">Edit Flight Details</a>
+
+
+
+<%- include('../partials/footer') %>
