@@ -8,11 +8,17 @@ router.get('/new', flightsCtrl.new);
 
 router.post('/', flightsCtrl.create);
 
+
+
 router.get('/:id', flightsCtrl.show);
 
 router.get('/:id/edit', flightsCtrl.showEditPage);
 
+router.put('/:id', flightsCtrl.update);
+
+
 router.get('/', flightsCtrl.index);
+
 
 
 

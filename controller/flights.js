@@ -5,8 +5,12 @@ module.exports = {
     create,
     new: newFlight,
     show,
-    showEditPage
+    showEditPage,
+    update,
+
 }
+
+
 
 async function index(req, res) {
     let flights = await Flight.find();
@@ -20,18 +24,29 @@ function newFlight(req, res) {
 async function showEditPage(req, res, next) {
     try {
         const { id } = req.params;
-        console.log(`ID: ${id}`)
         const flight = await Flight.findById(id);
-        res.render(`flights/${id}/edit`, {
-            flight,
-            airline: flight.airline,
-            airport: flight.airport,
-            flightNo: flight.flightNo,
-            departTime: flight.departTime,
-            destination: flight.destinations
-        });
+        res.render('flights/edit', { title: `Edit ${flight.airline} | ${flight.flightNo}`, flight });
     } catch(err) {
-        next();
+       
+    }
+}
+
+async function update(req, res, next) {
+    try {
+        const{ id } = req.params;
+        const updatedFlight = await Flight.findById(id);
+            const body = {
+            ...req.body, 
+            airline: req.body.airline.trim(), 
+            flightNo: req.body.flightNo.trim(),
+            airport: req.body.airport.trim(),
+            departTime: req.body.departTime,
+        }
+        Object.assign(updatedFlight, body);
+        await updatedFlight.save();
+        res.redirect(`/flights/${id}`);
+    } catch (err) {
+        console.log(err);
     }
 }
 

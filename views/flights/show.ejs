@@ -4,12 +4,25 @@
 <ul>
     <li>Flight: <%= flight.airline %> | <%= flight.flightNo %></li>
     <li>Departing: <%= flight.airport %></li>
-    <li>For: <%= flight.destination %></li>
     <li>At: <%= flight.departTime %></li>
 </ul>
 
-<a href="/flights/edit">Edit Flight Details</a>
+<a href="/flights/<%= flight._id %>/edit">Edit Flight Details</a>
 
-
+<br>
+<br>
+<form method="POST" action="/flights/<%= flight._id %>/destinations">
+    <label>Enter Destination
+        <input type="text" name="destinations">
+    </label><br><br>
+    <input type="submit" value="Confirm Changes">
+</form>
+<br>
+<h3>Destinations:</h3>
+<ol>
+    <% flight.destinations.forEach(function(d) { %>
+        <li><%= d.destinations %> </li>
+    <% }) %>
+</ol>
 
 <%- include('../partials/footer') %>
