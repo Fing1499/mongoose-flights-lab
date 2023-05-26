@@ -24,5 +24,27 @@
         <li><%= d.destinations %> </li>
     <% }) %>
 </ol>
+<br><br>
+<form method="POST" action="/flights/<%= flight._id %>/tickets">
+    <label>Select a Seat - A-F/1-9:
+        <input name="tickets" required pattern="[A-F][1-9]\d?">
+    </label><br>
+    <label>Price:
+        <% function randomNum() { %>
+           <% var num = Math.floor(Math.random() * 100); %>
+           <p>£<%= num %></p>
+        <% } %>
+        <% randomNum() %>
+    </label><br>
+    <label>
+        <input type="submit" value="Confirm Seat">
+    </label>
+</form>
+<h4>Taken Tickets:</h4><br>
+<ul>
+    <% flight.tickets.forEach(function(t) { %>
+        <li><%= t.tickets %></li>
+    <% }) %>
+</ul>
 
 <%- include('../partials/footer') %>
